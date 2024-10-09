@@ -8,28 +8,13 @@ using UnityEngine.TextCore.Text;
 // after all movements to prevent stuttering, especially when using a CharacterController
 public class CameraFollow : MonoBehaviour
 {
-    public string _target = "CameraTarget";
 
     // Treat this target as camera when working on your crouching mechanic, don't edit this script.
-    private Transform cameraTarget;
+    public Transform cameraTarget;
     
 
-    private void Start()
+    private void Update()
     {
-        try
-        {
-            cameraTarget = GameObject.FindGameObjectWithTag(_target).transform;
-        }
-        catch
-        {
-            Debug.Log("Create an empty GameObject and give it the tag " + _target + " to enable the camera rotation script");
-            GetComponent<CameraFollow>().enabled = false;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        transform.rotation = cameraTarget.rotation;
         transform.position = cameraTarget.position;
     }
 }
