@@ -20,10 +20,15 @@ public class PlayerMovement : MonoBehaviour
     public float maxHealth = 100f;
     public float health = 100f;
     [Header("Movement")]
-    public float walkSpeed = 5f; 
-    public float sprintSpeed = 10f;
+    public float walkSpeed; 
+    public float sprintSpeed;
+
+    public float dashSpeed;
+    public float dashTransition;
     private float moveSpeed;
     public float dragV;
+
+    public float maxYspeed;
 
     //----------------------------------
     public float jumpCD;
@@ -88,10 +93,11 @@ public class PlayerMovement : MonoBehaviour
         sprinting,
         backwards,
         crouching,
+        dashing,
         air
 
     }
-
+    public bool dashing;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -106,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f , onGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f , onGround);
 
         
         
@@ -121,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
             
         // }
 
-        if (grounded)
+        if (state == moveState.walking || state == moveState.sprinting || state == moveState.crouching)
         {
             rb.drag = dragV;
         }
@@ -167,6 +173,10 @@ public class PlayerMovement : MonoBehaviour
 	
 		}
     }
+    private float desiredSpeed;
+    private float lastDesiredSpeed;
+    private moveState lastState;
+    private bool keepMomentum;
       void stateHandle()
     {
         // if (grounded && Input.GetKey(sprintkey) && CurrentEnergy > 0f) 
@@ -175,23 +185,27 @@ public class PlayerMovement : MonoBehaviour
         //     state = moveState.sprinting;
         //     moveSpeed = sprintSpeed;
         // }
-        
-        if (Input.GetKey(crouchkey))
+        if(dashing) {
+            state = moveState.dashing;
+            desiredSpeed = dashSpeed;
+            speedChangeSmooth = dashTransition;
+        }
+        else if (Input.GetKey(crouchkey))
         {
             state = moveState.crouching;
-            moveSpeed = crouchSpeed;
+            desiredSpeed = crouchSpeed;
         }
         else if (grounded && Input.GetKey(sprintkey))
         {
             UseSprint(1);
             state = moveState.sprinting;
-            moveSpeed = sprintSpeed;
+            desiredSpeed = sprintSpeed;
         }
         
         else if (grounded)
         {
             state = moveState.walking;
-            moveSpeed = walkSpeed;
+            desiredSpeed = walkSpeed;
         }
         
         // else if (grounded && CurrentEnergy <= 0f)
@@ -203,19 +217,65 @@ public class PlayerMovement : MonoBehaviour
         else if (grounded && Input.GetKey(backwardskey))
         {
             state = moveState.backwards;
-            moveSpeed = walkSpeed * 0.5f;
+            desiredSpeed = walkSpeed * 0.5f;
         }
         
         else 
         {
             state = moveState.air;
-            
+            if(desiredSpeed < sprintSpeed)
+                desiredSpeed = walkSpeed;
+            else    
+                desiredSpeed = sprintSpeed;
         }
-        
+
+        bool desiredSpeedChanged = desiredSpeed != lastDesiredSpeed;
+        if(lastState == moveState.dashing) keepMomentum = true;
+
+        if(desiredSpeedChanged)
+        {
+            if(keepMomentum)
+            {
+                StopAllCoroutines();
+                StartCoroutine(SmoothSpeed());
+            }
+            else
+            {   
+                StopAllCoroutines();
+                moveSpeed = desiredSpeed;
+            }
+        }
+        lastDesiredSpeed = desiredSpeed;
+        lastState = state;
+    }
+
+    private float speedChangeSmooth;
+
+    private IEnumerator SmoothSpeed()
+    {
+        float time = 0;
+        float difference = Mathf.Abs(desiredSpeed - moveSpeed);
+        float startValue =moveSpeed;
+
+        float booster = speedChangeSmooth;
+
+        while(time < difference)
+        {
+            moveSpeed = Mathf.Lerp(startValue, desiredSpeed, time/difference);
+
+            time += Time.deltaTime * booster;
+
+            yield return null;
+        }
+
+        moveSpeed = desiredSpeed;
+        speedChangeSmooth = 1f;
+        keepMomentum = false;
     }
 
     void UpdateMovement()
     {
+        if(state == moveState.dashing) return;
         moveDir = orientation.forward * yInput + orientation.right * xInput;
 
         if (OnSlope() && !slopeExit)
@@ -254,7 +314,9 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3( limitVel.x, rb.velocity.y, limitVel.z);
         }
         }
-        
+
+        if (maxYspeed != 0 && rb.velocity.y > maxYspeed)
+            rb.velocity = new Vector3(rb.velocity.x, maxYspeed, rb.velocity.z);
     }
 
   
@@ -271,6 +333,7 @@ public class PlayerMovement : MonoBehaviour
     void ResetJump()
     {
         jumpReady = true;
+        slopeExit = false;
     }
     void UpdateCrouch()
     {
