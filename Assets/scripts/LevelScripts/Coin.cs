@@ -10,8 +10,11 @@ public class Coin : MonoBehaviour
     public float bobbingAmount = 0.5f;  
     public float pickupRadius = 2f;
 
+    public LevelManager levelManager;  
     private Vector3 initialPosition;  
     private Transform playerTransform;
+    
+
 
 
   
@@ -20,6 +23,11 @@ public class Coin : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         initialPosition = transform.position;
+
+        if (levelManager == null)
+        {
+            levelManager = FindObjectOfType<LevelManager>();
+        }
     }
 
     void Update()
@@ -31,7 +39,7 @@ public class Coin : MonoBehaviour
 
         if (Vector3.Distance(playerTransform.position, transform.position) <= pickupRadius)
         {
-            //gameManager.KeyCollected();
+            levelManager.CoinCollected();
 
             Debug.Log("coin collected");
 
