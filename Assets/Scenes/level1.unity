@@ -247,15 +247,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1001709424}
   playercam: {fileID: 1818351646}
-  dashForce: 0
+  dashForce: 30
   dashUpForce: 0
-  dashDur: 0
-  maxDashY: 0
-  dashCD: 0
+  dashDur: 0.5
+  maxDashY: 20
+  dashCD: 1.5
   dashkey: 113
-  camForward: 1
+  camForward: 0
   allowDir: 1
-  disableGrav: 0
+  disableGrav: 1
   resetVel: 1
 --- !u!81 &8774896
 AudioListener:
@@ -787,6 +787,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &150451436
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1602,6 +1603,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &277594591
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1728,6 +1730,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &325015587
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1943,6 +1946,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &414545266
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3014,6 +3018,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &684782169
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3140,6 +3145,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &704158751
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3360,6 +3366,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &714071110
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3657,6 +3664,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &942608952
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5679,6 +5687,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!4 &1750330287 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d2debcb3c417b07419457484a835eb7d, type: 3}
@@ -5861,6 +5870,7 @@ MonoBehaviour:
   bobbingSpeed: 2
   bobbingAmount: 0.5
   pickupRadius: 2
+  levelManager: {fileID: 2059508229}
 --- !u!136 &1912771483
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6360,6 +6370,53 @@ Transform:
   - {fileID: 171961624}
   m_Father: {fileID: 1161695879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2059508228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2059508230}
+  - component: {fileID: 2059508229}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2059508229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059508228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ade2d8003f74644aa25ad83f6439106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elapsedTime: 0
+  CoinsCollected: 0
+  maxEntries: 5
+--- !u!4 &2059508230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059508228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 180.49458, y: -101.65176, z: -91.76122}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2114806749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8829451551789304537, guid: 8206b722d11501a449d6a278cca2adfa, type: 3}
@@ -6556,3 +6613,4 @@ SceneRoots:
   - {fileID: 684782172}
   - {fileID: 414545269}
   - {fileID: 277594594}
+  - {fileID: 2059508230}
