@@ -83,8 +83,15 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject bulletSpawnPoint;
 
     //sounds
-    public AudioClip walksound;
-    public AudioClip runsound;
+    public AudioSource audioSource;
+    public AudioClip[] walkClips;  
+    public AudioClip[] runClips;    
+    public float timeBetweenStepsWalk = 0.5f;  
+    public float timeBetweenStepsRun = 0.3f;   
+
+    private bool isWalking = false;
+    private bool isRunning = false;
+    private float stepTimer = 0f;
 
     
     public moveState state;
@@ -108,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
         startYScale = transform.localScale.y;
         elapsedTime = shootRate;
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -120,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
         myInput();
         stateHandle();
         speedControl();
+        HandleWalkingSound();
 
 
         
@@ -154,6 +163,8 @@ public class PlayerMovement : MonoBehaviour
             jumpReady = false;
             UpdateJump();
             Invoke(nameof(ResetJump), jumpCD);
+
+            
         }
 
         if (Input.GetKeyDown(crouchkey))
@@ -224,6 +235,7 @@ public class PlayerMovement : MonoBehaviour
         else 
         {
             state = moveState.air;
+            audioSource.Stop();
             if(desiredSpeed < sprintSpeed)
                 desiredSpeed = walkSpeed;
             else    
@@ -330,6 +342,8 @@ public class PlayerMovement : MonoBehaviour
         
         rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
 
+        
+
     }
     void ResetJump()
     {
@@ -408,5 +422,44 @@ public class PlayerMovement : MonoBehaviour
     {
 
     }
+    private void HandleWalkingSound()
+    {
+        
+        isWalking = Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0;
+        isRunning = isWalking && Input.GetKey(sprintkey);
 
+        if (isWalking)
+        {
+            stepTimer -= Time.deltaTime;
+
+            if (isRunning)
+            {
+                if (stepTimer <= 0f)
+                {
+                    RunFootstep();
+                    stepTimer = timeBetweenStepsRun;  
+                }
+            }
+            else
+            {
+                if (stepTimer <= 0f)
+                {
+                    WalkFootstep();
+                    stepTimer = timeBetweenStepsWalk;  
+                }
+            }
+        }
+    }
+
+    void WalkFootstep()
+    {
+        int randomIndex = Random.Range(0, walkClips.Length);
+        audioSource.PlayOneShot(walkClips[randomIndex]);
+    }
+
+    void RunFootstep()
+    {
+        int randomIndex = Random.Range(0, runClips.Length);
+        audioSource.PlayOneShot(runClips[randomIndex]);
+    }
 }
