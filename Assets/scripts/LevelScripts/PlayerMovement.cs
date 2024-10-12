@@ -83,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
 	public GameObject bulletSpawnPoint;
 
     //sounds
-
+    public AudioClip walksound;
+    public AudioClip runsound;
 
     
     public moveState state;
