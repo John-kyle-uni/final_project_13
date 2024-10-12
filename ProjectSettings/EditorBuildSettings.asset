@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Leaderboard.unity
     guid: c5a39f40b33c11c429e57ebf5b465b78
-  - enabled: 1
-    path: Assets/Scenes/level1.unity
+  - enabled: 0
+    path: Assets/Scenes/fakelevel1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Victory Screen.unity
     guid: 78da17ff96fae8341a83c9f4e9763ff9
+  - enabled: 1
+    path: Assets/Scenes/level1.unity
+    guid: fb7a5f75d2ce70e459e5bc2bc8bb7ab4
   m_configObjects: {}

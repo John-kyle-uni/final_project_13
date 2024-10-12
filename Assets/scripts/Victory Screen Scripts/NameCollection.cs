@@ -10,6 +10,7 @@ public class NameCollection : MonoBehaviour
     public void OnSubmitName()
     {
         string playerName = nameInputField.text.Trim();  
+        Debug.Log(playerName);
 
         if (string.IsNullOrEmpty(playerName))
         {

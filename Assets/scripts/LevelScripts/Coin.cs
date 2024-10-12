@@ -11,6 +11,7 @@ public class Coin : MonoBehaviour
     public float pickupRadius = 2f;
 
     public LevelManager levelManager;  
+    public CoinsCollected coinsCollected;
     private Vector3 initialPosition;  
     private Transform playerTransform;
     
@@ -39,7 +40,7 @@ public class Coin : MonoBehaviour
 
         if (Vector3.Distance(playerTransform.position, transform.position) <= pickupRadius)
         {
-            levelManager.CoinCollected();
+            coinsCollected.CollectCoin();
 
             Debug.Log("coin collected");
 
