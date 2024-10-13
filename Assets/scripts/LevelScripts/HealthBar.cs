@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HealthManager : MonoBehaviour
 {
@@ -14,7 +15,12 @@ public class HealthManager : MonoBehaviour
     }
 
     void Update() {
-        
+        if (currentHealth <= 0) {
+            Cursor.visible = true;  // Show the cursor
+            Cursor.lockState = CursorLockMode.None;  // Free the cursor from being locked
+            
+            SceneManager.LoadScene("LossScene");
+        }
     }
     
 

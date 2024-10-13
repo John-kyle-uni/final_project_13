@@ -15,6 +15,8 @@ public class EnemyScript : MonoBehaviour
     public Transform player;         // Reference to the player's position
     private NavMeshAgent agent;      // Reference to the NavMeshAgent component
     public int enemyHealth;
+
+    public GameObject Coin;
     
     // Attack variables
     public int damage = 10;          // Damage dealt by the enemy
@@ -70,6 +72,7 @@ public class EnemyScript : MonoBehaviour
     protected void UpdateDead()
     {
         Debug.Log("Enemy is dead, destroying GameObject.");
+        Instantiate(Coin, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
