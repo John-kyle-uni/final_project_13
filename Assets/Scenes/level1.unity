@@ -402,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 1763222067}
+  coinsCollected: {fileID: 1309208085}
 --- !u!1 &31637547
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,8 +2062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sc: {fileID: 1598405846}
-  damage: 50
   playerHealth: {fileID: 8774898}
+  isHit: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -5103,6 +5104,7 @@ MonoBehaviour:
   canAttack: 1
   AttackCD: 1
   isAttacking: 0
+  attackDetect: {fileID: 704857252}
 --- !u!1 &1717183002
 GameObject:
   m_ObjectHideFlags: 0

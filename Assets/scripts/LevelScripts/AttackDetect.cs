@@ -5,8 +5,9 @@ using UnityEngine;
 public class AttackDetect : MonoBehaviour
 {
     public SwordControl sc;         // Reference to the sword control script
-    public int damage = 50;         // Damage dealt to enemies
     public HealthManager playerHealth; // Reference to player health (if needed)
+    public bool isHit;
+
 
     void Update()
     {
@@ -16,8 +17,9 @@ public class AttackDetect : MonoBehaviour
     // Trigger detection when the sword collides with an enemy
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("enemy") && sc.isAttacking)  // Check if the sword is attacking
-        {
+        if (other.CompareTag("enemy") && sc.isAttacking && isHit == false)  // Check if the sword is attacking
+        {	
+			isHit = true;
             Debug.Log("Enemy hit: " + other.name);
             
             // Get the EnemyScript component from the enemy GameObject
@@ -25,7 +27,7 @@ public class AttackDetect : MonoBehaviour
             if (enemyScript != null) // Check if the script was found
             {
                 // Apply damage to the enemy
-                enemyScript.TakeHit(damage);
+                enemyScript.TakeHit(DataHolder.PlayerDamage);
             }
             else
             {

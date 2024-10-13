@@ -7,6 +7,7 @@ public class HealthManager : MonoBehaviour
     public float maxHealth = 100f;  // Maximum health
     private float currentHealth;      // Current health
     public Image healthBar;           // Reference to the health bar UI
+    public CoinsCollected coinsCollected;
 
     void Start()
     {
@@ -18,7 +19,10 @@ public class HealthManager : MonoBehaviour
         if (currentHealth <= 0) {
             Cursor.visible = true;  // Show the cursor
             Cursor.lockState = CursorLockMode.None;  // Free the cursor from being locked
-            
+
+            Debug.Log(coinsCollected.coinsCollected);
+            DataHolder.Coins += coinsCollected.coinsCollected;
+
             SceneManager.LoadScene("LossScene");
         }
     }

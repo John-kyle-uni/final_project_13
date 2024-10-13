@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
             // Save the player's time
             SavePlayerTime();
 
+            DataHolder.Coins += coinsCollected.coinsCollected;
             // Load the victory screen scene
             SceneManager.LoadScene("Victory Screen");
         }
@@ -88,12 +89,6 @@ void SavePlayerTime()
             }
         }
     }
-
-    if (!timeSaved)
-    {
-        Debug.Log("Leaderboard is full, and the time is not fast enough.");
-    }
-
     PlayerPrefs.Save();
 }
 
