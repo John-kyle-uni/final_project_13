@@ -9,40 +9,6 @@ public class AttackDetect : MonoBehaviour
 
     public int damage = 50;
     private Vector3 newPos;
-
-    void Update()
-	{
-
-<<<<<<< Updated upstream
-		// see if bullet hits a collider
-		RaycastHit hit;
-		if (Physics.Linecast(transform.position, newPos, out hit))
-		{
-			if (hit.collider)
-			{
-
-
-
-
-				
-				// apply damage to object
-				GameObject obj = hit.collider.gameObject;
-				if ((obj.tag == "enemy" && sc.isAttacking))
-					obj.SendMessage("ApplyDamage", damage);
-			}
-		}
-	}
-    // private void OnTrigger(Collider other){
-
-    //     if(other.tag == "enemy" && sc.isAttacking)
-    //     {
-    //         Debug.Log(other.name);
-    //         GameObject obj = hit.collider.gameObject;
-	// 			if (obj.tag == "enemy")
-	// 				obj.SendMessage("ApplyDamage", damage);
-    //     }
-    // }
-=======
     // Trigger detection when the sword collides with an enemy
     private void OnTriggerEnter(Collider other)
     {
@@ -71,5 +37,4 @@ public class AttackDetect : MonoBehaviour
             }
         }
     }
->>>>>>> Stashed changes
 }
