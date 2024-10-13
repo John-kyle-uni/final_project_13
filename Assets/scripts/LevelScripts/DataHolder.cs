@@ -9,5 +9,5 @@ public static class DataHolder
     public static int Coins = 100;
     public static int PlayerDamage = 20;
     public static int PlayerHealth = 100;
-    public static int Difficulty;
+    public static int Difficulty = 1;
 }

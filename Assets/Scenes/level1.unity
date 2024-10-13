@@ -273,14 +273,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1001709424}
-  playercam: {fileID: 1818351646}
+  playercam: {fileID: 1453470398}
   dashForce: 30
   dashUpForce: 0
   dashDur: 0.5
   maxDashY: 20
   dashCD: 1.5
   dashkey: 113
-  camForward: 0
+  camForward: 1
   allowDir: 1
   disableGrav: 1
   resetVel: 1
@@ -2483,9 +2483,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   player: {fileID: 8774891}
-  enemyHealth: 0
+  enemyHealth: 100
   Coin: {fileID: 1933717922}
-  damage: 10
+  EnemyDamage: 5
   attackCooldown: 2
 --- !u!195 &723883440
 NavMeshAgent:
@@ -3443,9 +3443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   player: {fileID: 8774891}
-  enemyHealth: 0
+  enemyHealth: 100
   Coin: {fileID: 1933717922}
-  damage: 10
+  EnemyDamage: 5
   attackCooldown: 2
 --- !u!195 &977513265
 NavMeshAgent:
@@ -3656,9 +3656,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   player: {fileID: 8774891}
-  enemyHealth: 0
+  enemyHealth: 100
   Coin: {fileID: 1933717922}
-  damage: 10
+  EnemyDamage: 5
   attackCooldown: 2
 --- !u!195 &1070197635
 NavMeshAgent:
@@ -5023,9 +5023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   player: {fileID: 8774891}
-  enemyHealth: 0
+  enemyHealth: 200
   Coin: {fileID: 1933717922}
-  damage: 10
+  EnemyDamage: 5
   attackCooldown: 2
 --- !u!195 &1577559263
 NavMeshAgent:
@@ -6500,7 +6500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curState: 0
   player: {fileID: 0}
-  enemyHealth: 100
+  enemyHealth: 200
   Coin: {fileID: 732675363406212134, guid: 94988f114ce794340ae67a997a7ba849, type: 3}
   damage: 10
   attackCooldown: 5
@@ -6527,7 +6527,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!54 &2132676821
 Rigidbody:
@@ -6638,7 +6638,7 @@ Transform:
   m_GameObject: {fileID: 2132676818}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.619999, y: 4.56, z: 131.72}
+  m_LocalPosition: {x: -19.619999, y: 5.86, z: 151.79}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []

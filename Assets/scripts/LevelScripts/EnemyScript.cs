@@ -95,4 +95,5 @@ public class EnemyScript : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown); // Wait for the cooldown duration
         canAttack = true; // Allow attacks again
     }
+    
 }
