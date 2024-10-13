@@ -26,7 +26,7 @@ public class AttackDetect : MonoBehaviour
 				
 				// apply damage to object
 				GameObject obj = hit.collider.gameObject;
-				if ((obj.tag == "Player") | (obj.tag == "enemy"))
+				if ((obj.tag == "enemy" && sc.isAttacking))
 					obj.SendMessage("ApplyDamage", damage);
 			}
 		}
