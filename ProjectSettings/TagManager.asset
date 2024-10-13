@@ -8,6 +8,9 @@ TagManager:
   - MovingPlatform
   - spawnpoint
   - onGround
+  - FxTemporaire
+  - Fire
+  - Lava
   layers:
   - Default
   - TransparentFX
