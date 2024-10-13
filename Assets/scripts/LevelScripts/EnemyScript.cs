@@ -19,7 +19,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject Coin;
     
     // Attack variables
-    public int damage = 10;          // Damage dealt by the enemy
+    public int EnemyDamage = 20 * DataHolder.Difficulty;          // Damage dealt by the enemy
     private bool canAttack = true;   // To track if the enemy can attack
     public float attackCooldown = 2f; // Cooldown duration in seconds
     
@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
         curState = FSMState.Attack;
         // Get the NavMeshAgent component attached to the enemy
         agent = GetComponent<NavMeshAgent>();
-        enemyHealth = 100;
+        enemyHealth = 100 * DataHolder.Difficulty;
     }
 
     void Update()
@@ -62,7 +62,7 @@ public class EnemyScript : MonoBehaviour
     private void AttackPlayer()
     {
         // Assume player has a HealthManager component to apply damage
-        player.GetComponent<HealthManager>().ApplyDamage(damage);
+        player.GetComponent<HealthManager>().ApplyDamage(EnemyDamage);
         Debug.Log("Enemy attacked the player!");
 
         // Start the cooldown coroutine
@@ -79,6 +79,7 @@ public class EnemyScript : MonoBehaviour
 
     public void TakeHit(int damage)
     {
+        Debug.Log(damage);
         enemyHealth -= damage;
 
         // Optionally, check if health is below or equal to zero after taking damage
