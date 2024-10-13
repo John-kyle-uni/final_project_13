@@ -7,7 +7,7 @@ public class AttackDetect : MonoBehaviour
     public SwordControl sc;         // Reference to the sword control script
     public HealthManager playerHealth; // Reference to player health (if needed)
     public bool isHit;
-
+    public float damage = 50f;
 
     void Update()
     {
@@ -28,14 +28,14 @@ public class AttackDetect : MonoBehaviour
             if (enemyScript != null) // Check if the script was found
             {
                 // Apply damage to the enemy
-                enemyScript.TakeHit(damage);
+                enemyScript.TakeHit((int)damage);
             }
             
 					
             else if (enemyScript1 != null) // Check if the script was found
             {
                 // Apply damage to the enemy
-                enemyScript1.TakeHit(damage);
+                enemyScript1.TakeHit((int)damage);
             }
             else
             {
