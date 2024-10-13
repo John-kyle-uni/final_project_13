@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class AttackDetect : MonoBehaviour
 {
-    public SwordControl sc;
-    public GameObject HitParticle;
+    public SwordControl sc;         // Reference to the sword control script
+    public HealthManager playerHealth; // Reference to player health (if needed)
+    public bool isHit;
 
-    public int damage = 50;
-    private Vector3 newPos;
+
+    void Update()
+    {
+        // Update logic can be added here if necessary
+    }
+
     // Trigger detection when the sword collides with an enemy
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("enemy") && sc.isAttacking)  // Check if the sword is attacking
-        {
+        if (other.CompareTag("enemy") && sc.isAttacking && isHit == false)  // Check if the sword is attacking
+        {	
+			isHit = true;
             Debug.Log("Enemy hit: " + other.name);
             
             // Get the EnemyScript component from the enemy GameObject

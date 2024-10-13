@@ -9,6 +9,8 @@ public class SwordControl : MonoBehaviour
     public bool canAttack =  true;
     public float AttackCD = 1.0f;
     public bool isAttacking = false;
+    public AttackDetect attackDetect;
+
 
     private void Update(){
         if(Input.GetMouseButtonDown(0)){
@@ -35,6 +37,7 @@ public class SwordControl : MonoBehaviour
     }
     IEnumerator attackReset(){
         yield return new WaitForSeconds(1.0f);
+        attackDetect.isHit = false;
         isAttacking = false;
     }
 }
