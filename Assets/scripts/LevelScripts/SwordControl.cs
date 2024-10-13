@@ -10,6 +10,7 @@ public class SwordControl : MonoBehaviour
     public float AttackCD = 1.0f;
     public bool isAttacking = false;
     public AttackDetect attackDetect;
+    public float damage = 50.0f;
 
 
     private void Update(){

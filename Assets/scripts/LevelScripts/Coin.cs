@@ -29,8 +29,14 @@ public class Coin : MonoBehaviour
         {
             levelManager = FindObjectOfType<LevelManager>();
         }
-    }
 
+        
+        if (coinsCollected == null)
+        {
+            coinsCollected = FindObjectOfType<CoinsCollected>();
+        }   
+
+    }
     void Update()
     {
         transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
