@@ -347,25 +347,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleWalkingSound()
     {
-        if (grounded && (state == moveState.walking || state == moveState.sprinting))
-        {
-            stepTimer += Time.deltaTime;
+        
+        isWalking = Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0;
+        isRunning = isWalking && Input.GetKey(sprintkey);
 
-            if (stepTimer >= (isRunning ? timeBetweenStepsRun : timeBetweenStepsWalk))
-            {
-                PlayStepSound();
-                stepTimer = 0f;
-            }
-        }
-        else
+        if (isWalking)
         {
-            stepTimer = 0f; // Reset step timer when not grounded
+            stepTimer -= Time.deltaTime;
+
+            if (isRunning)
+            {
+                if (stepTimer <= 0f)
+                {
+                    RunFootstep();
+                    stepTimer = timeBetweenStepsRun;  
+                }
+            }
+            else
+            {
+                if (stepTimer <= 0f)
+                {
+                    WalkFootstep();
+                    stepTimer = timeBetweenStepsWalk;  
+                }
+            }
         }
     }
 
-    private void PlayStepSound()
+    void WalkFootstep()
     {
-        AudioClip clipToPlay = isRunning ? runClips[Random.Range(0, runClips.Length)] : walkClips[Random.Range(0, walkClips.Length)];
-        audioSource.PlayOneShot(clipToPlay);
+        int randomIndex = Random.Range(0, walkClips.Length);
+        audioSource.PlayOneShot(walkClips[randomIndex]);
+    }
+
+    void RunFootstep()
+    {
+        int randomIndex = Random.Range(0, runClips.Length);
+        audioSource.PlayOneShot(runClips[randomIndex]);
     }
 }
