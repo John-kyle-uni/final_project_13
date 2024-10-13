@@ -14,21 +14,7 @@ public class HealthManager : MonoBehaviour
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.F)) // Press D to take damage
-        {
-            currentHealth -= 10;
-            UpdateHealthBar();
-            Debug.Log(currentHealth);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.H)) // Press H to heal
-        {
-            currentHealth += 10;
-            UpdateHealthBar();
-            Debug.Log(currentHealth);
-
-        }
+        
     }
     
 
@@ -39,5 +25,10 @@ public class HealthManager : MonoBehaviour
         {
             healthBar.fillAmount = currentHealth / maxHealth;  // Update the fill amount based on current health
         }
+    }
+
+    public void ApplyDamage(int damage) {
+        currentHealth -= damage;
+        UpdateHealthBar();
     }
 }
