@@ -25,7 +25,7 @@ public class dashing : MonoBehaviour
 
     //------------------------------------
 
-    public bool camForward = true;
+    public bool camForward = false;
     public bool allowDir = true;
     public bool disableGrav = false;
     public bool resetVel = true;
