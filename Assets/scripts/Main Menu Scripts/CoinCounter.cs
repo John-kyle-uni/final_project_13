@@ -9,7 +9,6 @@ public class CoinCounter : MonoBehaviour
 
         void Update()
     {
-        Debug.Log(DataHolder.Coins);
         coinCountText.text = "Coins: " + DataHolder.Coins.ToString();
     }
 }
