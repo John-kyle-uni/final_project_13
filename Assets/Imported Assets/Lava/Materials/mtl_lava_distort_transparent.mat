@@ -31,9 +31,13 @@ Material:
         m_Texture: {fileID: 2800000, guid: aed369d136cf0174e8e04dfb34567e6a, type: 3}
         m_Scale: {x: 1, y: 1}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         m_Offset: {x: 0.816321, y: 0}
 =======
         m_Offset: {x: 0.33117115, y: 0}
+>>>>>>> Stashed changes
+=======
+        m_Offset: {x: 2.2840457, y: 0}
 >>>>>>> Stashed changes
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 348fa4d278c53ad4dacd07df1e63a248, type: 3}

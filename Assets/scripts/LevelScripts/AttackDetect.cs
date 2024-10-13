@@ -13,6 +13,7 @@ public class AttackDetect : MonoBehaviour
     void Update()
 	{
 
+<<<<<<< Updated upstream
 		// see if bullet hits a collider
 		RaycastHit hit;
 		if (Physics.Linecast(transform.position, newPos, out hit))
@@ -41,4 +42,34 @@ public class AttackDetect : MonoBehaviour
 	// 				obj.SendMessage("ApplyDamage", damage);
     //     }
     // }
+=======
+    // Trigger detection when the sword collides with an enemy
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("enemy") && sc.isAttacking)  // Check if the sword is attacking
+        {
+            Debug.Log("Enemy hit: " + other.name);
+            
+            // Get the EnemyScript component from the enemy GameObject
+            EnemyScript enemyScript = other.GetComponent<EnemyScript>();
+			BigEnemies enemyScript1 = other.GetComponent<BigEnemies>()	;
+            if (enemyScript != null) // Check if the script was found
+            {
+                // Apply damage to the enemy
+                enemyScript.TakeHit(damage);
+            }
+            
+					
+            else if (enemyScript1 != null) // Check if the script was found
+            {
+                // Apply damage to the enemy
+                enemyScript1.TakeHit(damage);
+            }
+            else
+            {
+                Debug.LogWarning("No EnemyScript found on " + other.name);
+            }
+        }
+    }
+>>>>>>> Stashed changes
 }
